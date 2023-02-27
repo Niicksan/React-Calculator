@@ -16,41 +16,39 @@ const ButtonHolder = ({ functions }) => {
         <div className="buttonHolder">
             {
                 btnValues.flat().map((btn, i) => {
-                    // console.log(btn);
-                    // console.log(typeof (btn))
                     return (
                         <Button
                             key={i}
                             className={btn === "=" ? "equals" : ""}
                             value={btn}
-                            onClick={
-                                () => {
-                                    // console.log(btn);
-                                    // console.log(btn === "C");
-                                    switch (btn) {
-                                        case "C":
-                                            return resetClickHandler();
-                                        case "+-":
-                                            return invertClickHandler();
-                                        case "%":
-                                            return percentClickHandler();
-                                        case "=":
-                                            return equalsClickHandler();
-                                        case "/":
-                                            return signClickHandler(btn);
-                                        case "x":
-                                            return signClickHandler(btn);
-                                        case "+":
-                                            return signClickHandler(btn);
-                                        case "-":
-                                            return signClickHandler(btn);
-                                        case ".":
-                                            return commaClickHandler(btn);
-                                        default:
-                                            return numClickHandler(btn);
-                                    }
+                            onClick={() => {
+                                switch (btn) {
+                                    case "C":
+                                        resetClickHandler();
+                                        break;
+                                    case "+-":
+                                        invertClickHandler();
+                                        break;
+                                    case "%":
+                                        percentClickHandler();
+                                        break;
+                                    case "=":
+                                        equalsClickHandler();
+                                        break;
+                                    case "÷":
+                                    case "x":
+                                    case "-":
+                                    case "+":
+                                        signClickHandler(btn);
+                                        break;
+                                    case ".":
+                                        commaClickHandler(btn);
+                                        break;
+                                    default:
+                                        numClickHandler(btn);
+                                        break;
                                 }
-                            }
+                            }}
                         />
                     );
                 })
