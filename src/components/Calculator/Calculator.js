@@ -59,13 +59,13 @@ const Calculator = () => {
 
     const percentClickHandler = () => {
         let num = calc.num ? parseFloat(calc.num) : 0;
-        let res = calc.res ? parseFloat(calc.res) : 0;
+        // let res = calc.res ? parseFloat(calc.res) : 0;
 
         setCalc({
             ...calc,
             num: (num /= Math.pow(100, 1)),
-            res: (res /= Math.pow(100, 1)),
-            sign: "",
+            // res: (res /= Math.pow(100, 1)),
+            // sign: "",
         });
     };
 
@@ -89,7 +89,7 @@ const Calculator = () => {
             setCalc({
                 ...calc,
                 res:
-                    calc.num === "0" && calc.sign === "/"
+                    calc.num === 0 && calc.sign === "/"
                         ? "Can't divide with 0"
                         : math(
                             Number(calc.res),
