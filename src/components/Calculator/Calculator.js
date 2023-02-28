@@ -116,7 +116,7 @@ const Calculator = () => {
     return (
         <div className="calculator">
             <Screen result={calc.num ? calc.num : calc.res} />
-            <ButtonHolder functions={functions} />
+            <ButtonHolder {...functions} />
         </div>
     );
 }

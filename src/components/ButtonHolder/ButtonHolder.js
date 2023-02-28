@@ -9,9 +9,7 @@ const btnValues = [
     [0, ".", "="],
 ];
 
-const ButtonHolder = ({ functions }) => {
-    const { numClickHandler, signClickHandler, invertClickHandler, commaClickHandler, percentClickHandler, equalsClickHandler, resetClickHandler } = functions;
-
+const ButtonHolder = ({ numClickHandler, signClickHandler, invertClickHandler, commaClickHandler, percentClickHandler, equalsClickHandler, resetClickHandler }) => {
     const addButtonHandler = (btn) => {
         switch (btn) {
             case "C":
