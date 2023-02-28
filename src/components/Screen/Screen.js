@@ -1,8 +1,11 @@
 import "./screen.css";
 
-const Screen = ({ result }) => {
+const Screen = ({ sign, result }) => {
     return (
-        <input className="screen" value={result} />
+        <div className="screen">
+            <input className="result" value={result} />
+            <span className="sign">{sign}</span>
+        </div>
     );
 }
 

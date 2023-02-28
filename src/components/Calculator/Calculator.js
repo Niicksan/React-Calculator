@@ -36,9 +36,7 @@ const Calculator = () => {
     const invertClickHandler = () => {
         setCalc({
             ...calc,
-            num: calc.num ? (calc.num * -1) : 0,
-            res: calc.res ? (calc.res * -1) : 0,
-            sign: "",
+            num: calc.num ? (calc.num * -1) : 0
         });
     };
 
@@ -115,7 +113,7 @@ const Calculator = () => {
 
     return (
         <div className="calculator">
-            <Screen result={calc.num ? calc.num : calc.res} />
+            <Screen result={calc.num ? calc.num : calc.res} sign={calc.sign} />
             <ButtonHolder {...functions} />
         </div>
     );
