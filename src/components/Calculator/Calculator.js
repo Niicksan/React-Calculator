@@ -7,7 +7,7 @@ import { useState } from "react";
 const Calculator = () => {
     let [calc, setCalc] = useState({
         sign: "",
-        num: 0,
+        num: null,
         res: 0
     });
 
@@ -15,21 +15,19 @@ const Calculator = () => {
         setCalc({
             ...calc,
             num:
-                calc.num === 0
-                    ? calc.num + value
+                (calc.num === null || calc.num === 0)
+                    ? value
                     : calc.num + value.toString(),
             res: !calc.sign ? 0 : calc.res
         });
     };
 
-    const signClickHandler = (e) => {
-        const value = e;
-
+    const signClickHandler = (value) => {
         setCalc({
             ...calc,
             sign: value,
-            res: !calc.res && calc.num ? calc.num : calc.res,
-            num: 0
+            res: (calc.res !== null && calc.num) ? calc.num : calc.res,
+            num: null
         });
     };
 
@@ -40,16 +38,24 @@ const Calculator = () => {
         });
     };
 
-    const commaClickHandler = (e) => {
-        const value = e;
-
+    const commaClickHandler = (value) => {
         setCalc({
             ...calc,
-            num: !calc.num.toString().includes(".") ? calc.num + value : calc.num
+            num: calc.num === null
+                ? 0 + value
+                : !calc.num.toString().includes(".")
+                    ? calc.num + value
+                    : calc.num
         });
     };
 
     const percentClickHandler = () => {
+        if (calc.num === null) {
+            calc.num = calc.res;
+        }
+
+        console.log(calc.num);
+
         let num = calc.num ? parseFloat(calc.num) : 0;
 
         setCalc({
@@ -59,7 +65,7 @@ const Calculator = () => {
     };
 
     const equalsClickHandler = () => {
-        if (calc.sign && calc.num) {
+        if (calc.sign && calc.num !== null) {
             const math = (a, b, sign) => {
                 switch (sign) {
                     case "÷":
@@ -78,8 +84,8 @@ const Calculator = () => {
             setCalc({
                 ...calc,
                 res:
-                    calc.num === 0 && calc.sign === "/"
-                        ? "Can't divide with 0"
+                    calc.num === 0 && calc.sign === "÷"
+                        ? "Can't divide by 0"
                         : math(
                             Number(calc.res),
                             Number(calc.num),
@@ -87,7 +93,7 @@ const Calculator = () => {
                         )
                 ,
                 sign: "",
-                num: 0,
+                num: null,
             });
         }
     };
@@ -96,7 +102,7 @@ const Calculator = () => {
         setCalc({
             ...calc,
             sign: "",
-            num: 0,
+            num: null,
             res: 0,
         });
     };
@@ -113,7 +119,7 @@ const Calculator = () => {
 
     return (
         <div className="calculator">
-            <Screen result={calc.num ? calc.num : calc.res} sign={calc.sign} />
+            <Screen result={calc.num !== null ? calc.num : calc.res} sign={calc.sign} />
             <ButtonHolder {...functions} />
         </div>
     );
