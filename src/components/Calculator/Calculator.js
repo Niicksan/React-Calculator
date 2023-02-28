@@ -12,8 +12,6 @@ const Calculator = () => {
     });
 
     const numClickHandler = (value) => {
-        console.log(value);
-
         setCalc({
             ...calc,
             num:
@@ -22,10 +20,6 @@ const Calculator = () => {
                     : calc.num + value.toString(),
             res: !calc.sign ? 0 : calc.res
         });
-
-        console.log(calc.num);
-        console.log(calc.sign);
-        console.log(calc.res);
     };
 
     const signClickHandler = (e) => {
@@ -59,13 +53,10 @@ const Calculator = () => {
 
     const percentClickHandler = () => {
         let num = calc.num ? parseFloat(calc.num) : 0;
-        // let res = calc.res ? parseFloat(calc.res) : 0;
 
         setCalc({
             ...calc,
             num: (num /= Math.pow(100, 1)),
-            // res: (res /= Math.pow(100, 1)),
-            // sign: "",
         });
     };
 
